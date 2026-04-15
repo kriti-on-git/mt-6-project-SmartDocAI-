@@ -1,11 +1,20 @@
-import requests
 from services.retrieval_service import retrieval_service
-from app.config import settings
+from services.llm_service import llm_service
 
 
 class RAGService:
 
     def build_prompt(self, query, contexts):
+
+        if not contexts:
+            return f"""
+You are a documentation assistant.
+
+No relevant context found.
+
+Question: {query}
+Answer: Not found in docs
+"""
 
         context_block = "\n\n".join([
             f"[{c['source']} - {c['heading']}]\n{c['text']}"
@@ -35,22 +44,9 @@ Answer:
 
         prompt = self.build_prompt(query, contexts)
 
-        response = requests.post(
-            "http://localhost:11434/api/generate",
-            json={
-                "model": settings.LLM_MODEL,
-                "prompt": prompt,
-                "stream": False
-            }
-        )
+        answer = llm_service.generate(prompt)
 
-        return response.json()["response"]
+        return answer
 
 
 rag_service = RAGService()
-
-
-def store_interaction(self, query, answer):
-    # later: store in DB / fine-tune dataset
-    with open("learning_log.txt", "a") as f:
-        f.write(f"Q: {query}\nA: {answer}\n\n")
