@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-
+from typing import Optional 
 
 class Settings(BaseSettings):
 
@@ -10,11 +10,20 @@ class Settings(BaseSettings):
 
     # Embeddings
     EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
+    EMBEDDING_PROVIDER: str = "hf"
+    HF_TOKEN: str | None = None  
 
     # LLM
-    LLM_MODEL: str = "llama3.1:8b"
+    LLM_PROVIDER: str = "groq"
+    LLM_MODEL: str = "llama-3.1-8b-instant"
+
+    GROQ_API_KEY: str = ""
 
     # Vector DB
+   
+    QDRANT_URL: Optional[str] = None
+    QDRANT_API_KEY: Optional[str] = None
+
     QDRANT_HOST: str = "localhost"
     QDRANT_PORT: int = 6333
     QDRANT_COLLECTION: str = "docs_embeddings"
