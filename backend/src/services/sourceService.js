@@ -26,7 +26,7 @@ const SUPPORTED_EXTENSIONS = new Set([
 ]);
 
 const MAX_FILE_BYTES = 250_000;
-const MAX_FILES_FROM_REPO = 30;
+const MAX_FILES_FROM_REPO = 80;
 
 function getExtension(filePath) {
   return path.extname(filePath).toLowerCase();
