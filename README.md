@@ -177,6 +177,7 @@ export const asyncHandler = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 ```
 
+
 ### `src/services/grok.service.js`
 
 **IMPORTANT**: Use `/v1/chat/completions` endpoint, model `grok-2-latest`.
