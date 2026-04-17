@@ -3,7 +3,7 @@ from typing import Optional
 
 class Settings(BaseSettings):
 
-    APP_NAME: str = "SmartDocs AI Backend"
+    APP_NAME: str = "SmartDocAI"
     API_V1_PREFIX: str = "/api"
 
     DOCS_PATH: str = "./docs"
