@@ -17,7 +17,14 @@ Answer: Not found in docs
 """
 
         context_block = "\n\n".join([
-            f"[{c['source']} - {c['heading']}]\n{c['text']}"
+    f"""SOURCE: {c.get('source', '')}
+SECTION: {c.get('heading', 'General')}
+URL: {c.get('url', '')}
+
+CONTENT:
+{c.get('heading', '')}
+{c.get('text', '')}
+"""
             for c in contexts
         ])
 
@@ -25,9 +32,14 @@ Answer: Not found in docs
 You are a senior developer documentation assistant.
 
 Rules:
-- Answer ONLY from provided context
-- If unsure, say "Not found in docs"
-- Be precise and technical
+- If the user greets, greet with "Hi."
+- If provides question, answer to it.
+- If no question found, ask if you can help with understanding the documentation.
+- Try to answer in a supportive manner.
+- Answer ONLY from provided context.
+- If unsure, say "Not found in docs".
+- Be precise and technical.
+- Format answers clearly, precisely using bullet points only when needed.
 
 Context:
 {context_block}
@@ -38,9 +50,9 @@ Question:
 Answer:
 """
 
-    def generate(self, query):
+    def generate(self, query, project_id):
 
-        contexts = retrieval_service.retrieve(query)
+        contexts = retrieval_service.retrieve(query, project_id)
 
         prompt = self.build_prompt(query, contexts)
 
