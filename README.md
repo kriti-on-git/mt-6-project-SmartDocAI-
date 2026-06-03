@@ -1,17 +1,6 @@
 # Smart Documentation Platform —
 
-You are a senior full-stack engineer. Build the **Smart Documentation Platform** — a GitBook-style app where users upload code or a GitHub repo URL and get AI-generated structured docs via the Grok API. Includes a RAG-style chatbot powered by the generated docs.
-
----
-
-## CRITICAL CORRECTIONS (read before generating any code)
-
-| Wrong (from old spec)             | Correct                              |
-|-----------------------------------|--------------------------------------|
-| `https://api.x.ai/v1/responses`  | `https://api.x.ai/v1/chat/completions` |
-| `grok-4.20-reasoning`            | `grok-2-latest`                      |
-| `GROK_MODEL_FALLBACKS` env var   | Remove — adds complexity, not needed for MVP |
-| `storage/projectStore.js`        | `services/store.service.js`          |
+Smart Documentation Platform— a GitBook-style app where users upload code or a GitHub repo URL and get AI-generated structured docs via the Grok API. Includes a RAG-style chatbot powered by the generated docs.
 
 ---
 
